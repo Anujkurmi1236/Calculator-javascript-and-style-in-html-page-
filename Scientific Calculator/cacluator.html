@@ -1,170 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        
-        .calculator {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .display {
-            width: 100%;
-            height: 60px;
-            font-size: 24px;
-            text-align: right;
-            border: none;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 0 15px;
-            margin-bottom: 20px;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        
-        button {
-            height: 50px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        .operator {
-            background: rgba(255, 107, 107, 0.8);
-        }
-        
-        .function {
-            background: rgba(72, 187, 120, 0.8);
-        }
-        
-        .special {
-            background: rgba(66, 153, 225, 0.8);
-        } 
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scientific Calculator - Grid Layout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 350px;
+    }
+
+    .display {
+      width: 100%;
+      height: 60px;
+      font-size: 24px;
+      text-align: right;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 0 15px;
+      margin-bottom: 20px;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      height: 50px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .operator {
+      background: rgba(255, 107, 107, 0.8);
+    }
+
+    .function {
+      background: rgba(72, 187, 120, 0.8);
+    }
+
+    .special {
+      background: rgba(66, 153, 225, 0.8);
+    }
+
+    .wide {
+      grid-column: span 2;
+    }
+
+    .equal {
+      background: #f6ad55;
+      color: #222;
+    }
+  </style>
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" class="display" id="display" readonly>
-        
-        <div class="buttons">
-            
-            <button onclick="appendToDisplay('00')">0</button>
-            <button onclick="appendToDisplay('..')">.</button>
-            <button class="function" onclick="appendToDisplay('sqrt(')">sqrt</button>
+  <div class="calculator">
+    <input type="text" class="display" id="display" readonly />
 
-            <button class="special" onclick="clearDisplay()">C</button>
-            <button class="special" onclick="deleteLast()">←</button>
-            <button class="function" onclick="appendToDisplay('(')">(</button>
-            <button class="function" onclick="appendToDisplay(')')">)</button>
-            <button class="operator" onclick="appendToDisplay('/')">/</button>
-            
-            <button class="function" onclick="appendToDisplay('sin(')">sin</button>
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button class="operator" onclick="appendToDisplay('*')">*</button>
-            
-            <button class="function" onclick="appendToDisplay('cos(')">cos</button>
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button class="operator" onclick="appendToDisplay('-')">-</button>
-            
-            <button class="function" onclick="appendToDisplay('tan(')">tan</button>
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button class="operator" onclick="appendToDisplay('+')">+</button>
-            
-            <button class="function" onclick="appendToDisplay('log10(')">log10</button>
-            <button onclick="appendToDisplay('0')">0</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            <button class="function" onclick="appendToDisplay('exp(')">exp</button>
-            <button class="operator" onclick="calculate()">=</button>
-        </div>
+    <div class="buttons">
+      <button class="special" onclick="clearDisplay()">C</button>
+      <button class="special" onclick="deleteLast()">←</button>
+      <button class="function" onclick="appendToDisplay('(')">(</button>
+      <button class="function" onclick="appendToDisplay(')')">)</button>
+      <button class="operator" onclick="appendToDisplay('/')">/</button>
+
+      <button class="function" onclick="appendToDisplay('sin(')">sin</button>
+      <button class="function" onclick="appendToDisplay('cos(')">cos</button>
+      <button class="function" onclick="appendToDisplay('tan(')">tan</button>
+      <button class="function" onclick="appendToDisplay('log10(')">log10</button>
+      <button class="function" onclick="appendToDisplay('sqrt(')">√</button>
+
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button class="operator" onclick="appendToDisplay('*')">*</button>
+      <button class="function" onclick="appendToDisplay('exp(')">exp</button>
+
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button class="operator" onclick="appendToDisplay('-')">-</button>
+      <button onclick="appendToDisplay('.')">.</button>
+
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button class="operator" onclick="appendToDisplay('+')">+</button>
+      <button onclick="appendToDisplay('0')">0</button>
+
+      <button class="wide equal" onclick="calculate()">=</button>
     </div>
+  </div>
 
-     <script>
-        const display = document.getElementById('display');
+  <script>
+    const display = document.getElementById('display');
 
-        function appendToDisplay(value) {
-            display.value += value;
-        }
+    function appendToDisplay(value) {
+      display.value += value;
+    }
 
-        function clearDisplay() {
-            display.value = '';
-        }
+    function clearDisplay() {
+      display.value = '';
+    }
 
-        function deleteLast() {
-            display.value = display.value.slice(0, -1);
-        }
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
 
-        function preprocess(expression) {
-            // Process longer function names FIRST to avoid conflicts
-            return expression
-                .replace(/log10/g, 'Math.log10')  // Process log10 BEFORE log
-                .replace(/sin/g, 'Math.sin')
-                .replace(/cos/g, 'Math.cos')
-                .replace(/tan/g, 'Math.tan')
-                .replace(/exp/g, 'Math.exp')
-                .replace(/sqrt/g, 'Math.sqrt');
-        }
+    function preprocess(expression) {
+      return expression
+        .replace(/log10/g, 'Math.log10')
+        .replace(/sin\(/g, 'Math.sin(Math.PI/180*')
+        .replace(/cos\(/g, 'Math.cos(Math.PI/180*')
+        .replace(/tan\(/g, 'Math.tan(Math.PI/180*')
+        .replace(/sqrt/g, 'Math.sqrt')
+        .replace(/exp/g, 'Math.exp');
+    }
 
-        function calculate() {
-            try {
-                const result = eval(preprocess(display.value));
-                display.value = result;
-            } catch (error) {
-                display.value = "Error";
-            }
-        }
+    function calculate() {
+      try {
+        const result = eval(preprocess(display.value));
+        display.value = result;
+      } catch (error) {
+        display.value = "Error";
+      }
+    }
 
-        // Allow keyboard input
-        document.addEventListener('keydown', function(event) {
-            const key = event.key;
-            
-            if ('0123456789+-*/.()'.includes(key)) {
-                appendToDisplay(key);
-            } else if (key === 'Enter' || key === '=') {
-                calculate();
-            } else if (key === 'Escape' || key === 'c' || key === 'C') {
-                clearDisplay();
-            } else if (key === 'Backspace') {
-                deleteLast();
-            }
-        }); 
-    </script>
+    document.addEventListener('keydown', function(event) {
+      const key = event.key;
+
+      if ('0123456789+-*/.()'.includes(key)) {
+        appendToDisplay(key);
+      } else if (key === 'Enter' || key === '=') {
+        calculate();
+      } else if (key === 'Escape' || key === 'c' || key === 'C') {
+        clearDisplay();
+      } else if (key === 'Backspace') {
+        deleteLast();
+      }
+    });
+  </script>
 </body>
 </html>
